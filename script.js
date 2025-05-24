@@ -8,11 +8,41 @@ function validateNumber(number) {
         return false;
     }
 
-    number = +number;
+    return Number.isFinite(+number)
+}
 
-    if (!Number.isFinite(number)) {
-        return false
+function add(number1, number2) {
+
+    if (!validateNumber(number1) || !validateNumber(number2)) {
+        return false;
     }
 
-    return number;
+    return number1 + number2;
+}
+
+function subtract(number1, number2) {
+
+    if (!validateNumber(number1) || !validateNumber(number2)) {
+        return false;
+    }
+
+    return number1 - number2;
+}
+
+function multiply(number1, number2) {
+
+    if (!validateNumber(number1) || !validateNumber(number2)) {
+        return false;
+    }
+
+    return number1 * number2;
+}
+
+function divide(number1, number2) {
+
+    if (!validateNumber(number1) || !validateNumber(number2)) {
+        return false;
+    }
+
+    return number1 / number2;
 }
