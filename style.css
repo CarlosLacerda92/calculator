@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+#calculator,
+#buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#calculator {
+    background-color: #384450;
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+#visor {
+    background-color: #e2fbff;
+    width: 100%;
+    text-align: end;
+    padding: 0.5rem;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.column {
+    flex: 1;
+}
+
+button {
+    width: 2rem;
+}
