@@ -10,6 +10,7 @@
         </title>
 
         <script src="script.js" defer></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     
@@ -23,109 +24,83 @@
 
             <div id="buttonsContainer">
                 <div class="row">
-                    <div class="column">
-                        <button type="button" id="backspace" title="Backspace">
-                            <
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button" id="clearAll" title="Clear all">
-                            AC
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button" id="floatingPoint" title="Floating point">
-                            .
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button" id="divide" title="Divide">
-                            /
-                        </button>
-                    </div>
+                    <button type="button" id="backspace" class="special" title="Backspace">
+                        <span class="material-symbols-outlined">
+                            backspace
+                        </span>
+                    </button>
+                    <button type="button" id="clearAll" class="special" title="Clear all">
+                        AC
+                    </button>
+                    <button type="button" id="floatingPoint" class="special" title="Floating point">
+                        .
+                    </button>
+                    <button type="button" id="divide" class="divide special" title="Divide">
+                        <span class="material-symbols-outlined">
+                            pen_size_1
+                        </span>
+                    </button>
                 </div>
                 <div class="row">
-                    <div class="column">
-                        <button type="button">
-                            7
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            8
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            9
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button" title="Multiply">
-                            *
-                        </button>
-                    </div>
+                    <button type="button">
+                        7
+                    </button>
+                    <button type="button">
+                        8
+                    </button>
+                    <button type="button">
+                        9
+                    </button>
+                    <button type="button" class="multiply special" title="Multiply">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </button>
                 </div>
                 <div class="row">
-                    <div class="column">
-                        <button type="button">
-                            4
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            5
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            6
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button" title="Subtract">
-                            -
-                        </button>
-                    </div>
+                    <button type="button">
+                        4
+                    </button>
+                    <button type="button">
+                        5
+                    </button>
+                    <button type="button">
+                        6
+                    </button>
+                    <button type="button" class="subtract special" title="Subtract">
+                        <span class="material-symbols-outlined">
+                            remove
+                        </span>
+                    </button>
                 </div>
                 <div class="row">
-                    <div class="column">
-                        <button type="button">
-                            1
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            2
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            3
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button" title="Add">
-                            +
-                        </button>
-                    </div>
+                    <button type="button">
+                        1
+                    </button>
+                    <button type="button">
+                        2
+                    </button>
+                    <button type="button">
+                        3
+                    </button>
+                    <button type="button" class="add special" title="Add">
+                        <span class="material-symbols-outlined">
+                            add
+                        </span>
+                    </button>
                 </div>
                 <div class="row">
-                    <div class="column">
-                        <button type="button">
-                            00
-                        </button>
-                    </div>
-                    <div class="column">
-                        <button type="button">
-                            0
-                        </button>
-                    </div>
-                    <div class="column" style="flex-grow: 3;">
-                        <button type="button" title="Equals" style="width: 100%">
-                            =
-                        </button>
-                    </div>
+                    <button type="button">
+                        00
+                    </button>
+                    <button type="button">
+                        0
+                    </button>
+                    <button type="button" class="equal special" title="Equals">
+                        <span class="material-symbols-outlined">
+                            equal
+                        </span>
+                    </button>
                 </div>
             </div>
         </div>
