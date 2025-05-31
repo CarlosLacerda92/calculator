@@ -1,3 +1,69 @@
+let calculationData = {
+    number1  : '',
+    number2  : '',
+    operation: null
+}
+
+let calculator = document.querySelector('#calculator');
+let display    = document.querySelector('#visor');
+
+calculator.addEventListener('click', (event) => {
+    
+    const element = event.target.closest('button');
+
+    if (element instanceof Element === false) {
+        return;
+    }
+
+    if (element.tagName.toLowerCase() !== 'button') {
+        return;
+    }
+
+    const elementContent = element.dataset.content.trim();
+
+    if (typeof +elementContent === 'number' && !isNaN(+elementContent)) {
+        handleNumberClick(elementContent);
+    }
+    else {
+        handleOperationClick(elementContent);
+    }
+});
+
+function handleNumberClick(number) {
+    if (!calculationData.operation) {
+        calculationData.number1 += number;
+        printIntoDisplay(calculationData.number1);
+    }
+    else {
+        calculationData.number2 += number;
+        printIntoDisplay(calculationData.number2);
+    }
+}
+
+function handleOperationClick(operationSelected) {
+
+    const operations = ['+', '-', '*', '/'];
+
+    if (operations.includes(operationSelected)) {
+        calculationData.operation = operationSelected;
+        return;
+    }
+
+    switch (operationSelected) {
+
+        case 'backspace':
+
+            
+
+
+            break;
+    }
+}
+
+function printIntoDisplay(content) {
+    display.textContent = content;
+}
+
 function validateNumber(number) {
 
     if (!['number', 'string'].includes(typeof number)) {
