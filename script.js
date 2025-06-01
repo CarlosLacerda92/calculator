@@ -1,7 +1,7 @@
 let calculationData = {
     number1  : '',
     number2  : '',
-    operation: null
+    operation: '',
 }
 
 let calculator = document.querySelector('#calculator');
@@ -56,7 +56,7 @@ function handleOperationClick(operationSelected) {
 
     const extraOperations = {
         'backspace': undoLastInput,
-        'clearAll': '',
+        'clearAll' : clearAllEntries,
     }
 
     extraOperations[operationSelected]();
@@ -74,6 +74,13 @@ function undoLastInput() {
     display.textContent = displayContent || '0';
 
     calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent; 
+}
+
+function clearAllEntries() {
+    display.textContent = '0';
+    Object.keys(calculationData).forEach((key) => {
+        calculationData[key] = '';
+    })
 }
 
 function validateNumber(number) {
