@@ -30,6 +30,11 @@ calculator.addEventListener('click', (event) => {
 });
 
 function handleNumberClick(number) {
+
+    if (['0', '00'].includes(number) && +display.textContent === 0) {
+        return;
+    }
+
     if (!calculationData.operation) {
         calculationData.number1 += number;
         printIntoDisplay(calculationData.number1);
