@@ -53,8 +53,12 @@ function handleOperationClick(operationSelected) {
 
         case 'backspace':
 
-            
+            let displayContent = display.textContent;
 
+            displayContent      = displayContent.substring(0, (displayContent.length - 1));
+            display.textContent = displayContent;
+
+            calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent;
 
             break;
     }
