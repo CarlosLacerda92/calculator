@@ -56,7 +56,7 @@ function handleOperationClick(operationSelected) {
             let displayContent = display.textContent;
 
             displayContent      = displayContent.substring(0, (displayContent.length - 1));
-            display.textContent = displayContent;
+            display.textContent = displayContent || '0';
 
             calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent;
 
