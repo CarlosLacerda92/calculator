@@ -37,7 +37,13 @@ function handleNumberClick(number) {
     const targetNumber  = calculationData.operation ? 'number2' : 'number1';
 
     if (isZero && (isInitialZero || (!calculationData.number2 && calculationData.operation))) {
+
         calculationData[targetNumber] = '0';
+
+        if (calculationData.operation) {
+            printIntoDisplay(resultDisplay, '0');
+        }
+
         return;
     }
 
