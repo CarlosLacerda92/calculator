@@ -31,18 +31,17 @@ calculator.addEventListener('click', (event) => {
 
 function handleNumberClick(number) {
 
-    if (['0', '00'].includes(number) && +display.textContent === 0) {
+    const isZero        = ['0', '00'].includes(number);
+    const isInitialZero = +display.textContent === 0;
+    const targetNumber  = calculationData.operation ? 'number2' : 'number1';
+
+    if (isZero && isInitialZero) {
+        calculationData[targetNumber] = '0';
         return;
     }
 
-    if (!calculationData.operation) {
-        calculationData.number1 += number;
-        printIntoDisplay(calculationData.number1);
-    }
-    else {
-        calculationData.number2 += number;
-        printIntoDisplay(calculationData.number2);
-    }
+    calculationData[targetNumber] += number;
+    printIntoDisplay(calculationData[targetNumber]);
 }
 
 function handleOperationClick(operationSelected) {
