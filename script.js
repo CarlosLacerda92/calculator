@@ -4,8 +4,9 @@ let calculationData = {
     operation: '',
 }
 
-let calculator = document.querySelector('#calculator');
-let display    = document.querySelector('#visor');
+const calculator       = document.querySelector('#calculator');
+const operationDisplay = document.querySelector('#operation');
+const resultDisplay    = document.querySelector('#result');
 
 calculator.addEventListener('click', (event) => {
     
@@ -32,12 +33,16 @@ calculator.addEventListener('click', (event) => {
 function handleNumberClick(number) {
 
     const isZero        = ['0', '00'].includes(number);
-    const isInitialZero = +display.textContent === 0;
+    const isInitialZero = +resultDisplay.textContent === 0;
     const targetNumber  = calculationData.operation ? 'number2' : 'number1';
 
-    if (isZero && isInitialZero) {
+    if (isZero && (isInitialZero || (!calculationData.number2 && calculationData.operation))) {
         calculationData[targetNumber] = '0';
         return;
+    }
+
+    if (isInitialZero) {
+        calculationData[targetNumber] = '';
     }
 
     calculationData[targetNumber] += number;
@@ -50,6 +55,7 @@ function handleOperationClick(operationSelected) {
 
     if (operations.includes(operationSelected)) {
         calculationData.operation = operationSelected;
+        operationDisplay.textContent = `${calculationData.number1} ${calculationData.operation}`;
         return;
     }
 
@@ -62,21 +68,24 @@ function handleOperationClick(operationSelected) {
 }
 
 function printIntoDisplay(content) {
-    display.textContent = content;
+    resultDisplay.textContent = content;
 }
 
 function undoLastInput() {
 
-    let displayContent = display.textContent;
+    let displayContent = resultDisplay.textContent;
 
     displayContent      = displayContent.substring(0, (displayContent.length - 1));
-    display.textContent = displayContent || '0';
+    resultDisplay.textContent = displayContent || '0';
 
     calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent; 
 }
 
 function clearAllEntries() {
-    display.textContent = '0';
+
+    operationDisplay.innerHTML = '&nbsp;';
+    resultDisplay.textContent  = '0';
+
     Object.keys(calculationData).forEach((key) => {
         calculationData[key] = '';
     })

@@ -26,12 +26,21 @@ body {
 }
 
 #visor {
-    /* background-color: #e2fbff; */
     color: #f7f7f7;
     border-radius: 0.75rem;
     width: 100%;
-    text-align: end;
     padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+#visor #operation {
+    font-size: 1rem;
+}
+
+#visor #result {
     font-size: 4rem;
 }
 
