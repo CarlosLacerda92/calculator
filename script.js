@@ -46,7 +46,7 @@ function handleNumberClick(number) {
     }
 
     calculationData[targetNumber] += number;
-    printIntoDisplay(calculationData[targetNumber]);
+    printIntoDisplay(resultDisplay, calculationData[targetNumber]);
 }
 
 function handleOperationClick(operationSelected) {
@@ -55,27 +55,28 @@ function handleOperationClick(operationSelected) {
 
     if (operations.includes(operationSelected)) {
         calculationData.operation = operationSelected;
-        operationDisplay.textContent = `${calculationData.number1} ${calculationData.operation}`;
+        printIntoDisplay(operationDisplay, `${calculationData.number1} ${calculationData.operation}`);
         return;
     }
 
     const extraOperations = {
         'backspace': undoLastInput,
         'clearAll' : clearAllEntries,
+        'fPoint'   : addFloatingPoint,
     }
 
     extraOperations[operationSelected]();
 }
 
-function printIntoDisplay(content) {
-    resultDisplay.textContent = content;
+function printIntoDisplay(container, content) {
+    container.textContent = content;
 }
 
 function undoLastInput() {
 
     let displayContent = resultDisplay.textContent;
 
-    displayContent      = displayContent.substring(0, (displayContent.length - 1));
+    displayContent = displayContent.substring(0, (displayContent.length - 1));
     resultDisplay.textContent = displayContent || '0';
 
     calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent; 
@@ -84,11 +85,24 @@ function undoLastInput() {
 function clearAllEntries() {
 
     operationDisplay.innerHTML = '&nbsp;';
-    resultDisplay.textContent  = '0';
+    printIntoDisplay(resultDisplay, '0');
 
     Object.keys(calculationData).forEach((key) => {
         calculationData[key] = '';
     })
+}
+
+function addFloatingPoint() {
+
+    const targetNumber = calculationData.operation ? 'number2' : 'number1';
+
+    if (calculationData[targetNumber].includes('.')) {
+        return;
+    }
+
+    calculationData[targetNumber] += '.';
+
+    printIntoDisplay(resultDisplay, calculationData[targetNumber]);
 }
 
 function validateNumber(number) {
