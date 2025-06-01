@@ -54,23 +54,26 @@ function handleOperationClick(operationSelected) {
         return;
     }
 
-    switch (operationSelected) {
-
-        case 'backspace':
-
-            let displayContent = display.textContent;
-
-            displayContent      = displayContent.substring(0, (displayContent.length - 1));
-            display.textContent = displayContent || '0';
-
-            calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent;
-
-            break;
+    const extraOperations = {
+        'backspace': undoLastInput,
+        'clearAll': '',
     }
+
+    extraOperations[operationSelected]();
 }
 
 function printIntoDisplay(content) {
     display.textContent = content;
+}
+
+function undoLastInput() {
+
+    let displayContent = display.textContent;
+
+    displayContent      = displayContent.substring(0, (displayContent.length - 1));
+    display.textContent = displayContent || '0';
+
+    calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent; 
 }
 
 function validateNumber(number) {
