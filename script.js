@@ -66,10 +66,12 @@ function handleOperationClick(operationSelected) {
         if (!calculationData.number1 && !calculationData.number2 && !calculationData.operation && calculationData.lastResult) {
             calculationData.number1 = calculationData.lastResult;
         }
-
-        if (calculationData.number1 && calculationData.number2 && calculationData.operation) {
+        else if (calculationData.number1 && calculationData.number2 && calculationData.operation) {
             operate();
             calculationData.number1 = calculationData.lastResult;
+        }
+        else if (!calculationData.number1) {
+            calculationData.number1 = '0';
         }
 
         calculationData.operation = operationSelected;
