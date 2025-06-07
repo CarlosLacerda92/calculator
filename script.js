@@ -81,6 +81,10 @@ function handleNumberClick(number) {
     const startsWithZeroDot = resultDisplay.textContent.startsWith('0.');
     const targetNumber      = calculationData.operation ? 'number2' : 'number1';
 
+    if (calculationData[targetNumber].toString().length >= 8) {
+        return;
+    }
+
     if (!startsWithZeroDot && isZero && (isInitialZero || (!calculationData.number2 && calculationData.operation))) {
 
         calculationData[targetNumber] = '0';
