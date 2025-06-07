@@ -202,8 +202,20 @@ function operate() {
 
     result = operatorFunction(a, b);
 
+    const resultString = result.toString();
+
+    //  If the result has too many digits after the floating point, round it until only 6 digits are left.
+    if (resultString.includes('.')) {
+        
+        const numberOfDecimals = resultString.split('.')[1].length;
+        
+        if (numberOfDecimals > 6) {
+            result = result.toFixed(6);
+        }
+    }
+
     printIntoDisplay(operationDisplay, `${number1} ${operation} ${number2} =`)
-    printIntoDisplay(resultDisplay, result);
+    printIntoDisplay(resultDisplay, result.toString());
 
     clearCalculationData();
 
