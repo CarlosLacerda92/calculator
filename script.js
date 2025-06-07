@@ -188,6 +188,11 @@ function operate() {
         const b    = +number2;
         let result = null;
 
+        if (b === 0) {
+            clearEverything();
+            throw new Error('Cannot divide by zero.')
+        }
+
         //  Object that stores a reference to each basic math operation
         const operations = {
             "+": add,
