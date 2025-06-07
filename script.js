@@ -69,6 +69,7 @@ function handleOperationClick(operationSelected) {
         'backspace': undoLastInput,
         'clearAll' : clearAllEntries,
         'fPoint'   : addFloatingPoint,
+        'equals'   : operate,
     }
 
     extraOperations[operationSelected]();
@@ -140,14 +141,19 @@ function divide(number1, number2) {
     return number1 / number2;
 }
 
-function operate(number1, number2, operation) {
+function operate() {
+
+    const number1   = calculationData.number1;
+    const number2   = calculationData.number2;
+    const operation = calculationData.operation;
 
     if (!validateNumber(number1) || !validateNumber(number2)) {
         throw new TypeError('Both numbers must be valid!')
     }
 
-    const a = +number1;
-    const b = +number2;
+    const a    = +number1;
+    const b    = +number2;
+    let result = null;
 
     //  Object that stores a reference to each basic math operation
     const operations = {
@@ -164,7 +170,9 @@ function operate(number1, number2, operation) {
         throw new Error(`Unsupported operation: "${operation}". Use one of ${Object.keys(operations).join(', ')}`);
     }
 
-    return operatorFunction(a, b);
+    result = operatorFunction(a, b);
+
+    printIntoDisplay(resultDisplay, result);
 }
 
 /* try {
