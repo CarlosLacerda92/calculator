@@ -173,60 +173,58 @@ function divide(number1, number2) {
 
 function operate() {
 
-    const number1   = calculationData.number1;
-    const number2   = calculationData.number2;
-    const operation = calculationData.operation;
+    try {
+        const number1   = calculationData.number1;
+        const number2   = calculationData.number2;
+        const operation = calculationData.operation;
 
-    if (!validateNumber(number1) || !validateNumber(number2)) {
-        throw new TypeError('Both numbers must be valid!')
-    }
-
-    const a    = +number1;
-    const b    = +number2;
-    let result = null;
-
-    //  Object that stores a reference to each basic math operation
-    const operations = {
-        "+": add,
-        "-": subtract,
-        "*": multiply,
-        "/": divide,
-    }
-    
-    //  Define the operation to be run based on the argument (operation) sent by the user
-    const operatorFunction = operations[operation];
-
-    if (!operatorFunction) {
-        throw new Error(`Unsupported operation: "${operation}". Use one of ${Object.keys(operations).join(', ')}`);
-    }
-
-    result = operatorFunction(a, b);
-
-    const resultString = result.toString();
-
-    //  If the result has too many digits after the floating point, round it until only 6 digits are left.
-    if (resultString.includes('.')) {
-        
-        const numberOfDecimals = resultString.split('.')[1].length;
-        
-        if (numberOfDecimals > 6) {
-            result = result.toFixed(6);
+        if (!validateNumber(number1) || !validateNumber(number2)) {
+            throw new TypeError('Both numbers must be valid!')
         }
+
+        const a    = +number1;
+        const b    = +number2;
+        let result = null;
+
+        //  Object that stores a reference to each basic math operation
+        const operations = {
+            "+": add,
+            "-": subtract,
+            "*": multiply,
+            "/": divide,
+        }
+        
+        //  Define the operation to be run based on the argument (operation) sent by the user
+        const operatorFunction = operations[operation];
+
+        if (!operatorFunction) {
+            throw new Error(`Unsupported operation: "${operation}". Use one of ${Object.keys(operations).join(', ')}`);
+        }
+
+        result = operatorFunction(a, b);
+
+        const resultString = result.toString();
+
+        //  If the result has too many digits after the floating point, round it until only 6 digits are left.
+        if (resultString.includes('.')) {
+            
+            const numberOfDecimals = resultString.split('.')[1].length;
+            
+            if (numberOfDecimals > 6) {
+                result = result.toFixed(6);
+            }
+        }
+
+        printIntoDisplay(operationDisplay, `${number1} ${operation} ${number2} =`)
+        printIntoDisplay(resultDisplay, result.toString());
+
+        clearCalculationData();
+
+        calculationData.lastResult = result.toString();
     }
-
-    printIntoDisplay(operationDisplay, `${number1} ${operation} ${number2} =`)
-    printIntoDisplay(resultDisplay, result.toString());
-
-    clearCalculationData();
-
-    calculationData.lastResult = result.toString();
+    catch (error) {
+        const errorMessage = `Something went wrong: ${error.message}`;
+        alert(errorMessage);
+        console.error(errorMessage);
+    }
 }
-
-/* try {
-    operate(5, '*', '-');
-}
-catch(error) {
-    const errorMessage = `Something went wrong: ${error.message}`;
-    alert(errorMessage);
-    console.error(errorMessage);
-} */
