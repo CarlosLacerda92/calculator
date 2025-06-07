@@ -11,7 +11,7 @@ const resultDisplay       = document.querySelector('#result');
 const floatingPointButton = document.querySelector('button[data-content="fPoint"]');
 
 calculator.addEventListener('click', (event) => {
-    
+
     const element = event.target.closest('button');
 
     if (element instanceof Element === false) {
@@ -30,6 +30,38 @@ calculator.addEventListener('click', (event) => {
     else {
         handleOperationClick(elementContent);
     }
+});
+
+document.addEventListener('keydown', (event) => {
+    
+    let keyPressed    = event.key;
+    const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.', 'Enter', 'Backspace', 'Escape'];
+
+    if (!allowedKeys.includes(keyPressed)) {
+        return;
+    }
+
+    if (keyPressed === '.') {
+        keyPressed = 'fPoint';
+    }
+
+    if (keyPressed === 'Enter') {
+        keyPressed = 'equals';
+    }
+
+    if (keyPressed === 'Backspace') {
+        keyPressed = 'backspace';
+    }
+
+    if (keyPressed === 'Escape') {
+        keyPressed = 'clearAll';
+    }
+    
+    const clickEvent = new Event('click', {
+        bubbles: true,
+    });
+
+    document.querySelector(`button[data-content="${keyPressed}"]`).dispatchEvent(clickEvent);
 });
 
 const observerForResultDisplay = new MutationObserver(() => {
