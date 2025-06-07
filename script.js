@@ -47,7 +47,7 @@ function handleNumberClick(number) {
         return;
     }
 
-    if (isInitialZero) {
+    if (isInitialZero && !resultDisplay.textContent.startsWith('0.')) {
         calculationData[targetNumber] = '';
     }
 
@@ -106,7 +106,7 @@ function addFloatingPoint() {
         return;
     }
 
-    calculationData[targetNumber] += '.';
+    calculationData[targetNumber] += calculationData[targetNumber] ? '.' : '0.';
 
     printIntoDisplay(resultDisplay, calculationData[targetNumber]);
 }
