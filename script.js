@@ -1,7 +1,8 @@
 let calculationData = {
-    number1  : '',
-    number2  : '',
-    operation: '',
+    number1   : '',
+    number2   : '',
+    operation : '',
+    lastResult: '',
 }
 
 const calculator       = document.querySelector('#calculator');
@@ -68,7 +69,7 @@ function handleOperationClick(operationSelected) {
 
     const extraOperations = {
         'backspace': undoLastInput,
-        'clearAll' : clearAllEntries,
+        'clearAll' : clearEverything,
         'fPoint'   : addFloatingPoint,
         'equals'   : operate,
     }
@@ -90,14 +91,30 @@ function undoLastInput() {
     calculationData[calculationData.operation ? 'number2' : 'number1'] = displayContent; 
 }
 
-function clearAllEntries() {
+function clearCalculationData() {
 
-    operationDisplay.innerHTML = '&nbsp;';
-    printIntoDisplay(resultDisplay, '0');
-
+    //  Could have used for...in here instead.
     Object.keys(calculationData).forEach((key) => {
         calculationData[key] = '';
     })
+}
+
+function clearOperationDisplay() {
+    operationDisplay.innerHTML = '&nbsp';
+}
+
+function clearResultDisplay() {
+    printIntoDisplay(resultDisplay, '0');
+}
+
+function clearAllDisplays() {
+    clearOperationDisplay();
+    clearResultDisplay();
+}
+
+function clearEverything() {
+    clearAllDisplays();
+    clearCalculationData();
 }
 
 function addFloatingPoint() {
@@ -173,7 +190,12 @@ function operate() {
 
     result = operatorFunction(a, b);
 
+    printIntoDisplay(operationDisplay, `${number1} ${operation} ${number2} =`)
     printIntoDisplay(resultDisplay, result);
+
+    clearCalculationData();
+
+    calculationData.lastResult = result.toString();
 }
 
 /* try {
