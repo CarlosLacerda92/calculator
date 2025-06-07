@@ -5,9 +5,10 @@ let calculationData = {
     lastResult: '',
 }
 
-const calculator       = document.querySelector('#calculator');
-const operationDisplay = document.querySelector('#operation');
-const resultDisplay    = document.querySelector('#result');
+const calculator          = document.querySelector('#calculator');
+const operationDisplay    = document.querySelector('#operation');
+const resultDisplay       = document.querySelector('#result');
+const floatingPointButton = document.querySelector('button[data-content="fPoint"]');
 
 calculator.addEventListener('click', (event) => {
     
@@ -29,6 +30,16 @@ calculator.addEventListener('click', (event) => {
     else {
         handleOperationClick(elementContent);
     }
+});
+
+const observerForResultDisplay = new MutationObserver(() => {
+    floatingPointButton.disabled = resultDisplay.textContent.includes('.');
+});
+
+observerForResultDisplay.observe(resultDisplay, {
+    childList    : true,
+    characterData: true,
+    subtree      : true,
 });
 
 function handleNumberClick(number) {
