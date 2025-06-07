@@ -62,6 +62,15 @@ function handleOperationClick(operationSelected) {
     const operations = ['+', '-', '*', '/'];
 
     if (operations.includes(operationSelected)) {
+
+        if (calculationData.number1 && calculationData.number2 && calculationData.operation) {
+            operate();
+            calculationData.number1   = calculationData.lastResult;
+            calculationData.operation = operationSelected;
+            printIntoDisplay(operationDisplay, `${calculationData.lastResult} ${operationSelected}`);
+            return;
+        }
+
         calculationData.operation = operationSelected;
         printIntoDisplay(operationDisplay, `${calculationData.number1} ${calculationData.operation}`);
         return;
