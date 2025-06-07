@@ -235,7 +235,7 @@ function operate() {
         const b    = +number2;
         let result = null;
 
-        if (b === 0) {
+        if (operation === '/' && b === 0) {
             clearEverything();
             throw new Error('Cannot divide by zero.')
         }
