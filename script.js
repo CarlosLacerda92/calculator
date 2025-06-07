@@ -32,11 +32,12 @@ calculator.addEventListener('click', (event) => {
 
 function handleNumberClick(number) {
 
-    const isZero        = ['0', '00'].includes(number);
-    const isInitialZero = +resultDisplay.textContent === 0;
-    const targetNumber  = calculationData.operation ? 'number2' : 'number1';
+    const isZero            = ['0', '00'].includes(number);
+    const isInitialZero     = +resultDisplay.textContent === 0;
+    const startsWithZeroDot = resultDisplay.textContent.startsWith('0.');
+    const targetNumber      = calculationData.operation ? 'number2' : 'number1';
 
-    if (isZero && (isInitialZero || (!calculationData.number2 && calculationData.operation))) {
+    if (!startsWithZeroDot && isZero && (isInitialZero || (!calculationData.number2 && calculationData.operation))) {
 
         calculationData[targetNumber] = '0';
 
@@ -47,7 +48,7 @@ function handleNumberClick(number) {
         return;
     }
 
-    if (isInitialZero && !resultDisplay.textContent.startsWith('0.')) {
+    if (isInitialZero && !startsWithZeroDot) {
         calculationData[targetNumber] = '';
     }
 
