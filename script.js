@@ -69,8 +69,12 @@ const observerForResultDisplay = new MutationObserver(() => {
     const textContent = resultDisplay.textContent;
     let fontSize      = '4rem';
 
-    if (textContent.length > 6) {
+    if (textContent.length > 6 && textContent.length <= 9) {
         fontSize = '3rem';
+    }
+
+    if (textContent.length > 9) {
+        fontSize = '1.5rem';
     }
 
     resultDisplay.style.fontSize = fontSize;

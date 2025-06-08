@@ -18,8 +18,8 @@ body {
 
 #calculator {
     background-color: #384450;
-    width: fit-content;
     padding: 2rem;
+    width: 25rem;
     min-width: 25rem;
     max-width: 40rem;
     border-radius: 0.5rem;
@@ -42,6 +42,7 @@ body {
 
 #visor #result {
     font-size: 4rem;
+    height: 5rem;
 }
 
 .row {
