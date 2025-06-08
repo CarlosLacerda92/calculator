@@ -121,6 +121,10 @@ function handleOperationClick(operationSelected) {
             calculationData.number1 = '0';
         }
 
+        //  This section converts a malformed float number (e.g. 9. to 9)
+        calculationData.number1 = fixMalformedFloat(calculationData.number1);
+        printIntoDisplay(resultDisplay, calculationData.number1);
+
         calculationData.operation = operationSelected;
 
         printIntoDisplay(operationDisplay, `${calculationData.number1} ${calculationData.operation}`);
@@ -191,6 +195,17 @@ function addFloatingPoint() {
     printIntoDisplay(resultDisplay, calculationData[targetNumber]);
 }
 
+function fixMalformedFloat(number) {
+
+    const floatNumber = number.split('.');
+
+    if (floatNumber.length <= 1 || (floatNumber.length > 1 && floatNumber[1].length > 0)) {
+        return number;
+    }
+
+    return floatNumber[0];
+}
+
 function validateNumber(number) {
 
     if (!['number', 'string'].includes(typeof number)) {
@@ -223,8 +238,8 @@ function divide(number1, number2) {
 function operate() {
 
     try {
-        const number1   = calculationData.number1;
-        const number2   = calculationData.number2;
+        const number1   = fixMalformedFloat(calculationData.number1);
+        const number2   = fixMalformedFloat(calculationData.number2);
         const operation = calculationData.operation;
 
         if (!validateNumber(number1) || !validateNumber(number2)) {
