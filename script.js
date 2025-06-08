@@ -65,7 +65,17 @@ document.addEventListener('keydown', (event) => {
 });
 
 const observerForResultDisplay = new MutationObserver(() => {
-    floatingPointButton.disabled = resultDisplay.textContent.includes('.');
+
+    const textContent = resultDisplay.textContent;
+    let fontSize      = '4rem';
+
+    if (textContent.length > 6) {
+        fontSize = '3rem';
+    }
+
+    resultDisplay.style.fontSize = fontSize;
+
+    floatingPointButton.disabled = textContent.includes('.');
 });
 
 observerForResultDisplay.observe(resultDisplay, {
@@ -284,7 +294,7 @@ function operate() {
             }
         }
 
-        printIntoDisplay(operationDisplay, `${number1} ${operation} ${number2} =`)
+        printIntoDisplay(operationDisplay, `${number1} ${operation} ${number2} =`);
         printIntoDisplay(resultDisplay, result.toString());
 
         clearCalculationData();
